@@ -1,0 +1,360 @@
+/* ===================================================================
+   STYLESHEET KHUSUS UNTUK HALAMAN DETAIL PROYEK
+   =================================================================== */
+
+/* === 1. VARIABLES (CUSTOM PROPERTIES) === */
+/* Semua warna dan font diatur di sini. Ubah di sini, berubah di semua tempat. */
+:root {
+    /* Warna */
+    --c-primary: #2bd6ec;      /* Sian cerah sebagai aksen utama */
+    --c-primary-dark: #1AA7B8;  /* Versi lebih gelap untuk hover */
+    --c-heading: #1A2E3A;      /* Biru sangat gelap untuk judul */
+    --c-body-text: #48545C;     /* Abu-abu gelap untuk teks paragraf */
+    --c-text-light: #586F7C;     /* Abu-abu lebih terang untuk sub-teks */
+    --c-white: #ffffff;
+    --c-border: #eaf0f3;
+
+    /* Warna Latar Belakang */
+    --c-bg-light: #f8f9fa;      /* Latar belakang utama (off-white) */
+    --c-bg-white: #ffffff;      /* Latar belakang untuk card */
+    --c-bg-section-alt: #f0f4f7;   /* Latar belakang untuk section alternatif (misal: tim) */
+    
+    /* Tipografi */
+    --ff-heading: 'Montserrat', sans-serif;
+    --ff-body: 'Open Sans', sans-serif;
+
+    /* Transisi */
+    --transition-main: all 0.3s ease-in-out;
+}
+
+/* === 2. GLOBAL STYLES (Jika belum ada di CSS utama Anda) === */
+body {
+    font-family: var(--ff-body);
+    line-height: 1.7;
+    color: var(--c-body-text);
+    background-color: var(--c-bg-light);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+/* === 3. MAIN CONTENT STYLING === */
+.project-detail-page main {
+    padding-top: 0;
+    background-color: var(--c-bg-white);
+}
+
+/* --- Standarisasi Judul Section --- */
+.project-detail-page section h2 {
+    font-family: var(--ff-heading);
+    font-size: 2.6rem;
+    font-weight: 700;
+    color: var(--c-heading);
+    text-align: center;
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+    position: relative;
+}
+
+.project-detail-page section h2::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    width: 70px;
+    height: 3px;
+    background-color: var(--c-primary);
+    border-radius: 2px;
+}
+
+/* --- Project Hero Section --- */
+.project-hero {
+    background: linear-gradient(135deg, rgba(30, 50, 60, 0.85) 0%, rgba(43, 214, 236, 0.7) 100%), url('../image/thumbnail.png') no-repeat center center/cover;
+    color: var(--c-white);
+    padding: 120px 20px 80px;
+    text-align: center;
+}
+
+.project-hero-content h1 {
+    font-family: var(--ff-heading);
+    font-size: 3.4rem;
+    font-weight: 700;
+    color: var(--c-white);
+    margin-bottom: 15px;
+    text-shadow: 0 2px 15px rgba(0,0,0,0.3);
+}
+
+.project-hero-content p {
+    font-size: 1.4rem;
+    font-weight: 400;
+    opacity: 0.95;
+    text-shadow: 0 1px 10px rgba(0,0,0,0.2);
+    margin-bottom: 0;
+}
+
+/* --- Project Overview Section --- */
+.project-overview {
+    padding: 80px 0;
+    background-color: #fdfdfd;
+}
+
+.project-overview p {
+    font-size: 1.15rem;
+    line-height: 1.9;
+    color: var(--c-body-text);
+    margin-bottom: 25px;
+    text-align: justify;
+}
+
+.project-figma-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 35px;
+    padding: 14px 30px;
+    font-size: 1.05rem;
+    font-weight: 600;
+    background-color: var(--c-primary);
+    color: var(--c-white);
+    border-radius: 50px;
+    text-decoration: none;
+    transition: var(--transition-main);
+    box-shadow: 0 4px 20px rgba(43, 214, 236, 0.3);
+}
+
+.project-figma-link:hover {
+    background-color: var(--c-primary-dark);
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 6px 25px rgba(26, 167, 184, 0.4);
+}
+
+.figma-icon {
+    margin-left: 12px;
+    width: 22px;
+    height: 22px;
+}
+
+/* --- Typography & Color Palette Section --- */
+.project-details-section {
+    padding: 80px 0;
+    background-color: #fdfdfd;
+    text-align: left;
+}
+
+.details-grid { 
+    display: grid; 
+    grid-template-columns: 1fr;
+    gap: 40px; 
+}
+
+.detail-card { 
+    background-color: var(--c-white); 
+    border: 1px solid var(--c-border); 
+    border-radius: 15px; 
+    padding: 30px; 
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05); 
+}
+
+.detail-card h3 { 
+    font-family: var(--ff-heading); 
+    font-size: 1.6rem; 
+    color: var(--c-heading);
+    margin-top: 0; 
+    margin-bottom: 25px; 
+    text-align: left; 
+    border-bottom: 2px solid var(--c-bg-section-alt); 
+    padding-bottom: 15px; 
+}
+
+.type-table { 
+    width: 100%; 
+    border-collapse: collapse; 
+}
+
+.type-table th, 
+.type-table td { 
+    text-align: left; 
+    padding: 12px 10px; 
+    border-bottom: 1px solid var(--c-bg-section-alt); 
+    vertical-align: middle; 
+}
+
+.type-table th { 
+    color: var(--c-text-light); 
+    font-weight: 600; 
+}
+
+.swatch-container { 
+    display: flex; 
+    flex-direction: column; 
+    gap: 20px;
+}
+
+.swatch { 
+    display: flex; 
+    align-items: center; 
+    gap: 20px; 
+}
+
+.swatch-color { 
+    width: 60px; 
+    height: 60px; 
+    border-radius: 50%;
+    border: 3px solid var(--c-white);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15); 
+    flex-shrink: 0;
+}
+
+.swatch-info .role { 
+    font-weight: 700; 
+    font-family: var(--ff-heading); 
+    color: var(--c-heading);
+    margin-bottom: 2px;
+}
+
+.swatch-info .hex { 
+    font-family: 'Courier New', Courier, monospace; 
+    color: var(--c-text-light); 
+    font-size: 0.9rem; 
+    background-color: var(--c-bg-section-alt);
+    padding: 2px 6px;
+    border-radius: 4px;
+}
+
+/* --- Screenshots Section --- */
+.project-screenshots {
+    padding: 80px 0;
+    background-color: var(--c-white);
+}
+
+.screenshot-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.screenshot-item {
+    background-color: var(--c-white);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+    transition: var(--transition-main);
+}
+
+.screenshot-item:hover {
+    transform: translateY(-8px) scale(1.03);     
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+}
+
+.screenshot-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* --- Team Section --- */
+.project-team {
+    padding: 80px 0;
+    background-color: var(--c-bg-section-alt);
+}
+
+.team-members {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 35px;
+    justify-content: center;
+}
+
+.team-member {
+    background-color: var(--c-white);
+    border-radius: 15px;
+    padding: 30px 25px;
+    text-align: center;
+    box-shadow: 0 8px 25px rgba(100, 120, 140, 0.08);
+    transition: var(--transition-main);
+}
+
+.team-member:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 35px rgba(100, 120, 140, 0.15);
+}
+
+.team-photo {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto 20px;
+    border: 5px solid var(--c-white);
+    box-shadow: 0 0 0 3px var(--c-primary), 0 5px 15px rgba(43, 214, 236, 0.3);
+    transition: transform 0.3s ease;
+}
+
+.team-photo:hover {
+    transform: scale(1.1);
+}
+
+.team-member h3 {
+    font-family: var(--ff-heading);
+    font-size: 1.5rem;
+    margin-bottom: 8px;
+    color: var(--c-heading);
+}
+
+.team-member .team-role {
+    font-size: 1rem;
+    color: var(--c-primary);
+    margin-bottom: 18px;
+    font-weight: 600;
+}
+
+.social-links a {
+    color: var(--c-text-light);
+    text-decoration: none;
+    margin: 0 8px;
+    font-size: 0.95rem;
+    transition: var(--transition-main);
+    display: inline-block;
+}
+
+.social-links a:hover {
+    color: var(--c-primary);
+    transform: scale(1.1);
+}
+
+/* === 4. RESPONSIVE MEDIA QUERIES === */
+@media (min-width: 992px) {
+    .details-grid {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .project-detail-page section h2 { font-size: 2.1rem; }
+    .project-hero { padding: 100px 20px 60px; }
+    .project-hero-content h1 { font-size: 2.6rem; }
+    .project-hero-content p { font-size: 1.15rem; }
+    .project-overview p { font-size: 1.1rem; }
+    .screenshot-gallery, .team-members {
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 25px;
+    }
+}
+
+@media (max-width: 480px) {
+    .project-detail-page section h2 { font-size: 1.9rem; }
+    .project-hero-content h1 { font-size: 2.2rem; }
+    .project-hero-content p { font-size: 1.05rem; }
+    .project-overview p { font-size: 1rem; }
+    .project-figma-link { padding: 12px 25px; font-size: 1rem; }
+    .team-member { padding: 25px 20px; }
+    .team-photo { width: 110px; height: 110px; }
+    .team-member h3 { font-size: 1.3rem; }
+    .team-member .team-role { font-size: 0.9rem; }
+}

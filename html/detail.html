@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Health Application Design - Detail Proyek</title>
+    <link rel="icon" href="../image/logo.png" type="image/png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+    
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <style>
+        /* ================================================= */
+        /* ==== CSS ANDA (DENGAN PERBAIKAN DARI SAYA) ==== */
+        /* ================================================= */
+
+        /* Reset CSS Dasar */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            line-height: 1.7;
+            color: #454545;
+            background-color: #f8f9fa;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+            padding: 0 20px;
+        }
+        
+        /* ============================================= */
+        /* ==== DESAIN NAVBAR BARU (Glassmorphism) ===== */
+        /* ============================================= */
+
+        header {
+            background: rgba(26, 46, 58, 0.8); /* Warna biru gelap semi-transparan */
+            backdrop-filter: blur(10px); /* Efek Kaca Buram */
+            -webkit-backdrop-filter: blur(10px);
+            padding: 0.75rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            width: 100%;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        header nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 90%;
+            margin: auto;
+        }
+
+        header .logo {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #2bd6ec; /* Warna logo sian */
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo img {
+            width: 50px;
+            height: 50px;
+        }
+
+        header ul {
+            list-style: none;
+            display: flex;
+            align-items: center;
+        }
+
+        header ul li {
+            margin-left: 25px;
+        }
+
+        header ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1rem;
+            font-weight: 600;
+            padding: 5px 0;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        header ul li a:not(.nav-contact-button)::after { /* Garis bawah animasi, KECUALI untuk tombol */
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -3px;
+            left: 0;
+            background-color: #2bd6ec;
+            transition: width 0.3s ease;
+        }
+
+        header ul li a:not(.nav-contact-button):hover::after {
+            width: 100%;
+        } 
+
+        header ul li a:hover,
+        header ul li a.active-link {
+            color: #2bd6ec;
+        }
+
+        /* Tombol Kontak di Navbar */
+        .nav-contact-button {
+            background-color: #2bd6ec;
+            color: #1A2E3A !important; /* Teks gelap di atas tombol terang */
+            padding: 8px 20px !important;
+            border-radius: 50px;
+            font-weight: 700 !important;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+
+        .nav-contact-button:hover {
+            background-color: #fff;
+            color: #1A2E3A !important;
+            transform: scale(1.05);
+        }
+        .nav-contact-button::after { display: none !important; } /* Hilangkan garis bawah */
+
+        /* Hamburger Menu Styling */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: 10px;
+        }
+        .menu-toggle .bar {
+            width: 28px;
+            height: 3px;
+            background-color: #fff;
+            margin: 4px 0;
+            border-radius: 1px;
+            transition: 0.4s;
+        }
+
+        /* Sisa Styling dari CSS Anda (dengan beberapa penyesuaian kecil) */
+        
+        /* === Section Umum & Detail Halaman Proyek === */
+        section { padding: 80px 20px; text-align: center; }
+        .project-detail-page section h2, section h2 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 2.6rem;
+            font-weight: 700;
+            color: #1A2E3A;
+            text-align: center;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            position: relative;
+        }
+        .project-detail-page section h2::after, section h2::after {
+            content: ''; position: absolute; left: 50%;
+            transform: translateX(-50%); bottom: 0;
+            width: 70px; height: 3px;
+            background-color: #2bd6ec; border-radius: 2px;
+        }
+
+        /* === Project Hero Section === */
+        .project-hero {
+            background: linear-gradient(135deg, rgba(30, 50, 60, 0.85) 0%, rgba(43, 214, 236, 0.7) 100%), url('../image/hero-background.jpg') no-repeat center center/cover;
+            color: #fff; padding: 120px 20px 80px;
+            text-align: center; position: relative; overflow: hidden;
+        }
+        .project-hero-content h1 {
+            font-family: 'Montserrat', sans-serif; font-size: 3.4rem; font-weight: 700;
+            color: #fff; margin-bottom: 15px; text-shadow: 0 2px 15px rgba(0,0,0,0.3);
+            letter-spacing: -0.5px;
+        }
+        .project-hero-content p {
+            font-size: 1.4rem; font-weight: 400; opacity: 0.95;
+            text-shadow: 0 1px 10px rgba(0,0,0,0.2); margin-bottom: 0;
+        }
+
+        /* === Project Overview & Details Section === */
+        .project-overview { padding: 80px 0; background-color: #fdfdfd; }
+        .project-overview p { font-size: 1.15rem; line-height: 1.9; color: #48545C; margin-bottom: 25px; text-align: justify; }
+        .project-figma-link {
+            display: inline-flex; align-items: center; justify-content: center;
+            margin-top: 35px; padding: 14px 30px; font-size: 1.05rem; font-weight: 600;
+            background-color: #2bd6ec; color: #fff; border-radius: 50px; text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(43, 214, 236, 0.3);
+        }
+        .project-figma-link:hover {
+            background-color: #1AA7B8; transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 6px 25px rgba(26, 167, 184, 0.4);
+        }
+        .figma-icon { margin-left: 12px; width: 22px; height: 22px; }
+
+        /* === Typography & Color Palette === */
+        .project-details-section { padding: 80px 0; background-color: #fdfdfd; }
+        .details-grid { display: grid; grid-template-columns: 1fr; gap: 40px; }
+        .detail-card { background-color: #fff; border: 1px solid #eaf0f3; border-radius: 15px; padding: 30px; box-shadow: 0 5px 20px rgba(0,0,0,0.05); }
+        .detail-card h3 { font-family: 'Montserrat', sans-serif; font-size: 1.6rem; margin-top: 0; margin-bottom: 25px; text-align: left; border-bottom: 2px solid #f0f4f7; padding-bottom: 15px; }
+        .type-table { width: 100%; border-collapse: collapse; }
+        .type-table th, .type-table td { text-align: left; padding: 12px 10px; border-bottom: 1px solid #f0f4f7; vertical-align: middle; }
+        .type-table th { color: #586F7C; font-weight: 600; }
+        .swatch-container { display: flex; flex-direction: column; gap: 15px; }
+        .swatch { display: flex; align-items: center; gap: 20px; }
+        .swatch-color { width: 60px; height: 60px; border-radius: 50%; border: 2px solid #fff; box-shadow: 0 2px 5px rgba(0,0,0,0.1); flex-shrink: 0; }
+        .swatch-info .role { font-weight: 700; font-family: 'Montserrat', sans-serif; color: #333D42; }
+        .swatch-info .hex { font-family: 'Courier New', Courier, monospace; color: #586F7C; font-size: 0.9rem; }
+        
+        /* === Project Screenshots & Team Section === */
+        .project-screenshots { padding: 80px 0; background-color: #FFFFFF; }
+        .screenshot-gallery { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
+        .screenshot-item { background-color: #fff; border-radius: 12px; overflow: hidden; box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07); transition: all 0.35s ease; }
+        .screenshot-item:hover { transform: translateY(-8px) scale(1.03); box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12); }
+        .screenshot-item img { width: 100%; height: auto; display: block; }
+        
+        .project-team { padding: 80px 0; background-color: #f0f4f7; }
+        .team-members { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 35px; justify-content: center; }
+        .team-member { background-color: #ffffff; border-radius: 15px; padding: 30px 25px; text-align: center; box-shadow: 0 8px 25px rgba(100, 120, 140, 0.08); transition: all 0.3s ease; }
+        .team-member:hover { transform: translateY(-10px); box-shadow: 0 12px 35px rgba(100, 120, 140, 0.15); }
+        .team-photo { width: 130px; height: 130px; border-radius: 50%; object-fit: cover; margin: 0 auto 20px; border: 5px solid #fff; box-shadow: 0 0 0 3px #2bd6ec, 0 5px 15px rgba(43, 214, 236, 0.3); transition: transform 0.3s ease; }
+        .team-photo:hover { transform: scale(1.1); }
+        .team-member h3 { font-family: 'Montserrat', sans-serif; font-size: 1.5rem; margin-bottom: 8px; color: #1A2E3A; font-weight: 700; }
+        .team-member .team-role { font-size: 1rem; color: #2bd6ec; margin-bottom: 18px; font-weight: 600; }
+        .social-links a { color: #586F7C; text-decoration: none; margin: 0 8px; font-size: 0.95rem; transition: all 0.3s ease; display: inline-block; }
+        .social-links a:hover { color: #2bd6ec; transform: scale(1.1); }
+
+        /* ========================================= */
+        /* ==== DESAIN FOOTER BARU (Multi-Column) ==== */
+        /* ========================================= */
+        
+        footer {
+            background-color: #1A2E3A;
+            color: #bdc3c7;
+            padding: 50px 0 20px 0;
+        }
+
+        .footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+            width: 90%;
+            margin: 0 auto;
+            padding-bottom: 40px;
+        }
+
+        .footer-col h4 {
+            font-family: 'Montserrat', sans-serif;
+            color: #fff;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        .footer-col h4::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -8px;
+            width: 40px;
+            height: 2px;
+            background-color: #2bd6ec;
+        }
+        
+        .footer-col p, .footer-col ul {
+            list-style: none;
+            font-size: 0.95rem;
+        }
+
+        .footer-col ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-col ul li a {
+            color: #bdc3c7;
+            text-decoration: none;
+            transition: color 0.3s ease, padding-left 0.3s ease;
+        }
+
+        .footer-col ul li a:hover {
+            color: #2bd6ec;
+            padding-left: 5px;
+        }
+
+        .footer-socials {
+            margin-top: 15px;
+        }
+
+        .footer-socials a {
+            display: inline-block;
+            color: #bdc3c7;
+            font-size: 1.5rem; /* Ukuran ikon sosial */
+            margin-right: 15px;
+            transition: color 0.3s, transform 0.3s;
+        }
+
+        .footer-socials a:hover {
+            color: #2bd6ec;
+            transform: translateY(-3px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid #3e5060;
+            width: 90%;
+            margin: 0 auto;
+            font-size: 0.9rem;
+        }
+
+        /* === Responsive Media Queries === */
+        @media (min-width: 992px) {
+            .details-grid { grid-template-columns: 1fr 1fr; align-items: start; }
+        }
+        @media (max-width: 768px) {
+            header nav { padding: 0.8rem 1rem; }
+            .menu-toggle { display: flex; position: absolute; top: 50%; right: 15px; transform: translateY(-50%); z-index: 1001; }
+            header ul {
+                display: none; flex-direction: column; width: 100%;
+                position: absolute; top: 100%; left: 0;
+                background-color: #1A2E3A; padding: 10px 0;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+            }
+            header ul.active { display: flex; }
+            header ul li { margin: 0; width: 100%; text-align: center; }
+            header ul li a { padding: 12px 0; display: block; border-bottom: 1px solid #3e5060; }
+            header ul li:last-child a { border-bottom: none; }
+            .menu-toggle.active .bar:nth-child(1) { transform: rotate(-45deg) translate(-6px, 7px); }
+            .menu-toggle.active .bar:nth-child(2) { opacity: 0; }
+            .menu-toggle.active .bar:nth-child(3) { transform: rotate(45deg) translate(-6px, -7px); }
+            section, .project-overview, .project-screenshots, .project-team { padding: 60px 15px; }
+            section h2 { font-size: 2.2rem; }
+        }
+
+    </style>
+</head>
+
+<body>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
+    </script>
+
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="../image/logo.png" alt="logo porto">MY UI/UX DESIGN
+            </div>
+            <div class="menu-toggle">
+                <div class="bar"></div>
+                <div class="bar"></div>
+                <div class="bar"></div>
+            </div>
+            <ul id="nav-links">
+                <li><a href="porto.html#beranda">Home</a></li>
+                <li><a href="porto.html#proyek">Projects</a></li>
+                <li><a href="porto.html#tentang">About me</a></li>
+                <li><a href="porto.html#kontak" class="nav-contact-button">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="project-hero">
+            <div class="project-hero-content">
+                <h1>Health Application Design</h1>
+                <p>(Child Growth and Development)</p>
+            </div>
+        </section>
+
+        <section class="project-overview">
+            <div class="container" data-aos="fade-up">
+                <h2>Project Description</h2>
+                <p>
+                    This app is designed to help parents monitor their children's growth and development comprehensively and easily. The main focus is to provide an intuitive interface and features that support monitoring of health, nutrition, immunization schedules, and child development milestones. The design is made as attractive as possible so that users feel comfortable and motivated to use the app regularly.
+                </p>
+                <a href="https://www.figma.com/proto/iE7t1ZlwVK7Qad1Fur4PMN/App-Tumbuh-Kembang-Anak?page-id=27%3A9&node-id=46-32&p=f&viewport=407%2C431%2C0.06&t=x4hYHyqberNV1ucQ-1&scaling=scale-down&content-scaling=fixed&starting-point-node-id=49%3A532" target="_blank" class="cta-button project-figma-link">
+                    See Design in Figma
+                    <svg class="figma-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 2.4a9.6 9.6 0 019.6 9.6H2.4A9.6 9.6 0 0112 2.4zm0 19.2a9.6 9.6 0 01-9.6-9.6h4.8a4.8 4.8 0 109.6 0h4.8A9.6 9.6 0 0112 21.6zm-2.4-7.2a2.4 2.4 0 100-4.8 2.4 2.4 0 000 4.8zm4.8 0a2.4 2.4 0 100-4.8 2.4 2.4 0 000 4.8zM9.6 12a2.4 2.4 0 100-4.8 2.4 2.4 0 000 4.8zm4.8 0a2.4 2.4 0 100-4.8 2.4 2.4 0 000 4.8z"/></svg>
+                </a>
+            </div>
+        </section>
+
+        <section class="project-details-section">
+            <div class="container" data-aos="fade-up">
+                <div class="details-grid">
+                    <div class="detail-card">
+                        <h3>Typography</h3>
+                        <table class="type-table">
+                            <thead><tr><th>Role</th><th>Example</th><th>Weight</th></tr></thead>
+                            <tbody>
+                                <tr><td>Heading (Hero)</td><td style="font-family: 'Montserrat', sans-serif; font-size: 3.4rem;">Heading</td><td>700</td></tr>
+                                <tr><td>Heading (Section)</td><td style="font-family: 'Montserrat', sans-serif; font-size: 2.6rem;">Heading</td><td>700</td></tr>
+                                <tr><td>Body Text</td><td style="font-family: 'Open Sans', sans-serif; font-size: 1.15rem;">Paragraph...</td><td>400</td></tr>
+                                <tr><td>Button / Links</td><td style="font-family: 'Open Sans', sans-serif; font-size: 1rem;">Button Text</td><td>600</td></tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="detail-card">
+                        <h3>Color Palette</h3>
+                        <div class="swatch-container">
+                            <div class="swatch"><div class="swatch-color" style="background-color: #2bd6ec;"></div><div class="swatch-info"><div class="role">Primary Accent</div><div class="hex">#2bd6ec</div></div></div>
+                            <div class="swatch"><div class="swatch-color" style="background-color: #1A2E3A;"></div><div class="swatch-info"><div class="role">Dark Headings</div><div class="hex">#1A2E3A</div></div></div>
+                            <div class="swatch"><div class="swatch-color" style="background-color: #48545C;"></div><div class="swatch-info"><div class="role">Body Text</div><div class="hex">#48545C</div></div></div>
+                            <div class="swatch"><div class="swatch-color" style="background-color: #f0f4f7;"></div><div class="swatch-info"><div class="role">Light Background</div><div class="hex">#f0f4f7</div></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="project-screenshots">
+            <div class="container">
+                <h2>Application Screenshot</h2>
+                <div class="screenshot-gallery">
+                    <div class="screenshot-item" data-aos="zoom-out-right"><img src="../image/d1.png" alt="Screenshot 1"></div>
+                    <div class="screenshot-item" data-aos="zoom-out-left"><img src="../image/d2.png" alt="Screenshot 2"></div>
+                    <div class="screenshot-item" data-aos="zoom-out-right"><img src="../image/d3.png" alt="Screenshot 3"></div>
+                    <div class="screenshot-item" data-aos="zoom-out-left"><img src="../image/d4.png" alt="Screenshot 4"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="project-team">
+            <div class="container">
+                <h2>Development Team</h2>
+                <div class="team-members">
+                    <div class="team-member" data-aos="flip-left" data-aos-duration="1000">
+                        <img src="../image/user3.png" alt="Foto Anggota Tim 1" class="team-photo">
+                        <h3>I Made Dwipa Aditya Putra</h3>
+                        <p class="team-role">UI/UX Designer</p>
+                    </div>
+                    <div class="team-member" data-aos="flip-up" data-aos-duration="1000">
+                        <img src="../image/user2.jpg" alt="Foto Anggota Tim 2" class="team-photo">
+                        <h3>Komang Lazuardi Edo Karang</h3>
+                        <p class="team-role">UI/UX Designer</p>
+                    </div>
+                    <div class="team-member" data-aos="flip-right" data-aos-duration="1000">
+                        <img src="../image/user4.jpg" alt="Foto Anggota Tim 3" class="team-photo">
+                        <h3>Ni Luh Putu Shinta Juliantari</h3>
+                        <p class="team-role">UX Researcher</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+            <div class="footer-col">
+                <div class="logo">
+                    <img src="../image/logo.png" alt="logo porto">MY UI/UX DESIGN
+                </div>
+                <p style="color: #bdc3c7; font-size: 0.9rem; margin-top: 15px;">Membawa ide menjadi kenyataan melalui desain yang intuitif dan berpusat pada pengguna.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Navigasi</h4>
+                <ul>
+                    <li><a href="porto.html#beranda">Home</a></li>
+                    <li><a href="porto.html#proyek">Projects</a></li>
+                    <li><a href="porto.html#tentang">About Me</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Media Sosial</h4>
+                 <div class="footer-socials">
+                    <a href="#" title="LinkedIn">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+                    </a>
+                     <a href="#" title="Instagram">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.689-.073-4.948-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4s1.791-4 4-4 4 1.79 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                    </a>
+                     <a href="#" title="Dribbble">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm-1.884 16.649c-3.153-1.03-4.921-4.04-3.89-7.192.17-.52.411-1.012.712-1.468-1.53.818-2.668 2.379-2.668 4.148 0 2.57 2.094 4.664 4.664 4.664.12 0 .239-.005.358-.015.111.31.258.608.424.893zm7.884-3.167c-1.792 2.352-4.575 3.71-7.536 3.71-1.24 0-2.43-.301-3.516-.855.228-1.394.885-2.671 1.838-3.624 2.85-2.85 6.643-3.667 9.873-2.428.163.067.322.14.473.218-1.045 2.083-2.122 3.013-1.132 2.971zm.344-5.344c-3.321-1.34-7.294-.482-9.646 2.368-2.071 2.493-2.553 5.766-1.123 8.359.294-1.282.93-2.455 1.81-3.336 3.321-3.321 8.243-3.868 12.01-1.707-.027-.221-.059-.44-.096-.662-1.111-2.221-2.955-3.022-2.955-5.022z"/></svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 MY UI/UX DESIGN. Hak Cipta Dilindungi.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Javascript untuk menu mobile
+        const menuToggle = document.querySelector('.menu-toggle');
+        const navLinks = document.querySelector('#nav-links');
+
+        menuToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            menuToggle.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>

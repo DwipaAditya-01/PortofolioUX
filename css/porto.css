@@ -1,0 +1,970 @@
+/* Reset CSS Dasar */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif; /* Font untuk teks biasa */
+    line-height: 1.7;
+    color: #454545;
+    background-color: #f8f9fa;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Utilitas */
+.container {
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+    padding: 0 20px;
+}
+
+/* ==================================================
+   DESAIN NAVBAR BARU (Glassmorphism & Lebih Keren)
+   ================================================== */
+
+header {
+    /* Latar belakang semi-transparan untuk efek kaca */
+    background: rgba(26, 46, 58, 0.8); /* Warna biru gelap dengan 80% opacity */
+    
+    /* Efek Kaca Buram (Glassmorphism) */
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px); /* Untuk kompatibilitas Safari */
+
+    /* Garis batas tipis untuk efek 'edge' dari kaca */
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+
+    color: #fff;
+    padding: 0.75rem 0; /* Padding sedikit disesuaikan */
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+    transition: background-color 0.3s ease;
+}
+
+header nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    margin: auto;
+    position: relative;
+}
+
+header .logo {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #2bd6ec; /* Warna logo tetap sian agar kontras */
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo img {
+    width: 50px; /* Ukuran disesuaikan agar proporsional */
+    height: 50px;
+    vertical-align: middle;
+}
+
+header ul {
+    list-style: none;
+    display: flex;
+    align-items: center; /* Membuat item sejajar secara vertikal */
+}
+
+header ul li {
+    margin-left: 25px;
+}
+
+header ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 5px 2px; /* Padding sedikit disesuaikan */
+    transition: color 0.3s ease;
+    position: relative;
+}
+
+/* Garis bawah animasi untuk link biasa (bukan tombol) */
+header ul li a:not(.nav-contact-button)::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px; /* Sedikit lebih jauh dari teks */
+    left: 0;
+    background-color: #2bd6ec;
+    transition: width 0.3s ease;
+}
+
+header ul li a:hover:not(.nav-contact-button)::after {
+    width: 100%;
+}
+
+header ul li a:hover {
+    color: #2bd6ec; /* Warna hover tetap sian */
+}
+
+/* Tombol CTA "Contact" yang baru */
+.nav-contact-button {
+    background-color: #2bd6ec;
+    color: #1A2E3A !important; /* Pakai !important agar override warna putih, teks jadi gelap */
+    padding: 10px 22px !important; /* Padding lebih besar dari link biasa */
+    border-radius: 50px; /* Membuatnya bulat penuh */
+    font-weight: 700 !important;
+    transition: all 0.3s ease;
+}
+
+.nav-contact-button:hover {
+    background-color: #fff;
+    color: #1A2E3A !important;
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(43, 214, 236, 0.5);
+}
+/* Hilangkan efek garis bawah untuk tombol */
+.nav-contact-button::after {
+    display: none !important;
+}
+
+
+/* Hamburger Menu Styling (tetap sama, tidak perlu diubah) */
+.menu-toggle {
+    display: none;
+    flex-direction: column;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.menu-toggle .bar {
+    width: 28px;
+    height: 3px;
+    background-color: #fff;
+    margin: 4px 0;
+    border-radius: 1px;
+    transition: 0.4s;
+}
+
+/* Section Umum */
+section {
+    padding: 80px 20px; /* Padding lebih besar untuk section */
+    text-align: center;
+}
+
+section h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.8rem;
+    margin-bottom: 40px; /* Jarak lebih besar di bawah judul section */
+    color: #2c3e50;
+    position: relative;
+    padding-bottom: 20px;
+}
+
+section h2::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    width: 100px; /* Perpanjang garis bawah */
+    height: 4px;
+    background-color: #2bd6ec;
+    border-radius: 2px;
+}
+
+/* Hero Section */
+.hero {
+    background: url('../image/background.png') no-repeat center center/cover; /* Pastikan path ini benar */
+    color: #fff;
+    height: 55vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 0 20px;
+    position: relative; /* Tetap, penting untuk positioning ::before */
+}
+
+.hero::before { /* Overlay */
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    /* Ganti dengan warna overlay yang Anda inginkan, contoh: semi-transparan hitam */
+    /* background-color: rgba(0, 0, 0, 0.5); */
+    /* Jika Anda menggunakan gambar gradasi seperti di screenshot awal Anda,
+       Anda mungkin ingin menggunakan background-image atau linear-gradient di sini,
+       atau mungkin overlay ini tidak diperlukan jika gradasi sudah ada di .hero background.
+       Jika tidak ada background di sini, ia tetap bisa menghalangi klik jika z-index nya lebih tinggi.
+    */
+    z-index: 1; /* Overlay berada di z-index 1 */
+}
+
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative; /* Ditambahkan: Untuk membuat stacking context baru */
+    z-index: 2;       /* Ditambahkan: Agar konten berada di atas .hero::before */
+}
+
+.hero-content h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: clamp(2.5rem, 5vw, 3.5rem); /* Ukuran font responsif */
+    margin-bottom: 20px; /* Sedikit penyesuaian margin */
+    font-weight: 700;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.5);
+    opacity: 0; /* Mulai transparan untuk animasi */
+    transform: translateY(30px); /* Mulai sedikit di bawah untuk animasi "up" */
+    animation: fadeInUp 1s ease-out forwards;
+    animation-delay: 0.3s; /* Sedikit jeda sebelum animasi h1 dimulai */
+}
+
+.hero-content p {
+    font-size: clamp(1rem, 2.5vw, 1.3rem); /* Ukuran font responsif */
+    margin-bottom: 70px; /* Sedikit penyesuaian margin */
+    max-width: 908px;
+    text-shadow: 1px 1px 6px rgba(0,0,0,0.4);
+    font-weight: 400;
+    opacity: 0; /* Mulai transparan untuk animasi */
+    transform: translateY(30px); /* Mulai sedikit di bawah untuk animasi "up" */
+    animation: fadeInUp 1s ease-out forwards;
+    animation-delay: 0.6s; /* Jeda lebih lama agar muncul setelah h1 */
+}
+
+.cta-button {
+    display: inline-block;
+    background: #2bd6ec;
+    color: #fff;
+    padding: 12px 28px; /* Padding lebih besar */
+    text-decoration: none;
+    border-radius: 35px;
+    font-size: 1.1rem; /* Font lebih besar */
+    font-weight: 600;
+    /* transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease; */
+    box-shadow: 0 4px 15px rgba(43, 214, 236, 0.3); /* Shadow lebih terlihat */
+    animation: fadeInUp 1s ease-out forwards;
+    animation-delay: 0.8s; /* Jeda lebih lama agar muncul setelah h1 */
+    /* Pastikan tidak ada 'pointer-events: none;' di sini atau di elemen induk yang relevan */
+}
+
+.cta-button:hover {
+    background-color: #1AA7B8;
+    transform: translateY(-3px); /* Efek terangkat lebih jelas */
+    box-shadow: 0 6px 20px rgba(26, 167, 184, 0.5);
+}
+/* Proyek Section */
+#proyek {
+    background-color: #f8f9fa; 
+    padding: 60px 20px;
+    text-align: center;/* Sesuaikan dengan body atau biarkan putih */
+}
+#proyek h2 {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    position: relative;
+    display: inline-block;
+}
+
+#proyek h2::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  background-color: #00c6ff;
+  margin: 10px auto 0;
+  border-radius: 5px;
+}
+
+/* View More Button */
+#proyek .view-more-container {
+  margin-top: 40px;
+}
+
+#proyek .view-more {
+  display: inline-block;
+  background: #2bd6ec;
+  color: white;
+  padding: 12px 24px;
+  border-radius: 25px;
+  font-size: 1rem;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+#proyek .view-more:hover {
+  background: #1AA7B8;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+  padding: 0 40px;
+  max-width: 1670px;
+  margin: auto;
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    background: #ffffff;
+    padding: 0; /* Padding diatur oleh konten di dalamnya atau gambar */
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+    text-align: left;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.4s ease;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.gallery-item:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.12);
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 250px; /* Tinggi tetap untuk gambar thumbnail */
+    object-fit: cover; /* Gambar akan di-crop agar pas */
+    display: block;
+    border-top-left-radius: 12px; /* Sesuaikan dengan border-radius item */
+    border-top-right-radius: 12px;
+    transition: transform 0.3s ease;
+}
+
+/* .gallery-item:hover img {
+    transform: scale(1.05); -- Efek zoom ini mungkin berlebihan dengan overlay
+} */
+
+.gallery-item .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 250px; /* Sesuaikan dengan tinggi gambar */
+    background-color: rgba(43, 214, 236, 0.8); /* Warna overlay tema dengan transparansi */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.gallery-item:hover .overlay {
+    opacity: 1;
+}
+
+.gallery-item.hidden {
+  display: none;
+}
+
+.lihat-semua {
+    background: #fff; /* Tombol putih di atas overlay berwarna */
+    color: #1AA7B8; /* Teks warna tema */
+    padding: 10px 22px;
+    text-decoration: none;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    transition: background-color 0.3s ease, color 0.3s ease, transform 0.2s ease;
+    border: 2px solid #fff;
+}
+
+.lihat-semua:hover {
+    background-color: transparent; /* Transparan saat hover */
+    color: #fff; /* Teks putih */
+    transform: scale(1.05);
+}
+
+.gallery-item h3, .gallery-item p {
+    padding: 0 20px; /* Padding untuk teks di bawah gambar */
+}
+
+.gallery-item h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.3rem; /* Ukuran font judul proyek */
+    margin-top: 15px;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.gallery-item p {
+    font-size: 0.9rem;
+    color: #666;
+    padding-bottom: 20px; /* Pastikan ada ruang di bawah deskripsi */
+    line-height: 1.6;
+}
+
+/* Tentang Section */
+#tentang {
+    background-color: #ffffff; /* Warna latar sedikit berbeda untuk variasi */
+    padding-top: 60px; /* Mengurangi margin atas yang ada di #tentang */
+    margin: 0; /* Hapus margin default yang sebelumnya Anda tambahkan */
+}
+
+.about-content {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: left;
+    display: flex; /* Menggunakan flexbox untuk tata letak foto dan teks */
+    align-items: center; /* Sejajarkan item secara vertikal */
+    gap: 30px; /* Jarak antara foto dan teks */
+}
+
+.profile-pic {
+    width: 200px; /* Perbesar foto profil */
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    /* float: left; -- Dihapus karena menggunakan flexbox */
+    /* margin-right: 30px; -- Diatur oleh gap pada flex container */
+    /* margin-bottom: 15px; -- Tidak perlu jika sudah align-items: center */
+    border: 5px solid #2bd6ec; /* Border lebih tebal */
+    box-shadow: 0 0 25px rgba(43, 214, 236, 0.4);
+    flex-shrink: 0; /* Mencegah gambar mengecil jika teks panjang */
+}
+
+.profile-pic:hover{
+    transform: scale(1.50);
+}
+
+
+#tentang p {
+    font-size: 1.1rem;
+    text-align: justify;
+    color: #555;
+}
+
+/* Kontak Section */
+#kontak {
+    background-color: #f8f9fa;
+}
+
+#kontak p {
+    font-size: 1.15rem;
+    margin-bottom: 30px;
+    max-width: 650px;
+    margin-left: auto;
+    margin-right: auto;
+    color: #444;
+}
+
+/* Footer */
+footer {
+    background: #2c3e50;
+    color: #bdc3c7;
+    text-align: center;
+    padding: 30px 0;
+    margin-top: 0; /* Hapus margin atas jika #kontak adalah section terakhir */
+    font-size: 0.9rem;
+}
+
+/* CARD1 */
+.project-detail-page main {
+    padding-top: 0;
+    background-color: #FFFFFF; /* Latar belakang utama halaman lebih bersih */
+}
+
+.project-detail-page .container { /* Kontainer standar untuk konten utama */
+    max-width: 1000px; /* Sedikit lebih lebar untuk konten utama */
+    margin: 0 auto;
+    padding: 0 30px; /* Padding sisi sedikit lebih besar */
+}
+
+/* Standarisasi Judul Section */
+.project-detail-page section h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2.6rem; /* Ukuran konsisten untuk judul section */
+    font-weight: 700;
+    color: #1A2E3A; /* Warna judul lebih gelap dan berwibawa */
+    text-align: center;
+    margin-bottom: 25px; /* Jarak bawah standar */
+    padding-bottom: 20px; /* Ruang untuk aksen */
+    position: relative;
+}
+
+.project-detail-page section h2::after { /* Aksen garis bawah yang lebih halus */
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    width: 70px;
+    height: 3px;
+    background-color: #2bd6ec; /* Warna aksen utama Anda */
+    border-radius: 2px;
+}
+
+/* === Project Hero Section - Lebih Impactful === */
+.project-hero {
+    background: linear-gradient(135deg, rgba(30, 50, 60, 0.85) 0%, rgba(43, 214, 236, 0.7) 100%), url('../Portofolio Ux/image/13038584061579257087.png') no-repeat center center/cover; /* Gunakan gambar background yang Anda sediakan, sesuaikan path jika perlu */
+    color: #fff;
+    padding: 120px 20px 80px;
+    text-align: center;
+    position: relative;
+    overflow: hidden; /* Untuk efek tambahan jika ada */
+    height: 50vh;
+}
+
+.project-hero::before { /* Overlay yang lebih halus jika diperlukan, atau hapus jika gradien sudah cukup */
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    /* background-color: rgba(20, 30, 40, 0.1); /* Contoh overlay lebih tipis */
+}
+
+
+.project-hero-content h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 3.4rem; /* Lebih besar */
+    font-weight: 700;
+    margin-bottom: 15px;
+    text-shadow: 0 2px 15px rgba(0,0,0,0.3); /* Shadow lebih lembut */
+    letter-spacing: -0.5px;
+}
+
+.project-hero-content p {
+    font-size: 1.4rem;
+    font-weight: 400;
+    opacity: 0.95;
+    text-shadow: 0 1px 10px rgba(0,0,0,0.2);
+    margin-bottom: 0;
+}
+
+/* === Project Overview Section - Clean & Readable === */
+.project-overview {
+    padding: 80px 0; /* Spasi vertikal lebih banyak */
+    background-color: #fdfdfd; /* Latar belakang sedikit off-white */
+}
+
+.project-overview p {
+    font-size: 1.15rem; /* Ukuran font body sedikit lebih besar */
+    line-height: 1.9; /* Line height lebih lega */
+    color: #48545C; /* Warna teks body lebih lembut */
+    margin-bottom: 25px;
+    text-align: justify;
+}
+
+.project-figma-link {
+    display: inline-flex; /* Menggunakan inline-flex agar width fit-content bekerja baik */
+    align-items: center;
+    justify-content: center;
+    margin-top: 35px;
+    padding: 14px 30px; /* Padding tombol lebih besar */
+    font-size: 1.05rem;
+    font-weight: 600;
+    background-color: #2bd6ec; /* Warna aksen utama */
+    color: #fff;
+    border-radius: 50px; /* Tombol lebih rounded */
+    text-decoration: none;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 20px rgba(43, 214, 236, 0.3);
+}
+
+.project-figma-link:hover {
+    background-color: #1AA7B8; /* Warna hover */
+    transform: translateY(-3px) scale(1.02);
+    box-shadow: 0 6px 25px rgba(26, 167, 184, 0.4);
+}
+
+.figma-icon {
+    margin-left: 12px;
+    width: 22px; /* Sesuaikan ukuran ikon */
+    height: 22px;
+}
+
+/* === Project Screenshots Section - Gallery yang Lebih Menarik === */
+.project-screenshots {
+    padding: 80px 0;
+    background-color: #FFFFFF; /* Kembali ke putih bersih */
+}
+
+.screenshot-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Ukuran minimum bisa disesuaikan */
+    gap: 30px; /* Jarak antar gambar */
+}
+
+.screenshot-item {
+    background-color: #fff;
+    border-radius: 12px; /* Sudut lebih melengkung */
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07); /* Shadow lebih halus dan menyebar */
+    transition: transform 0.35s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.35s cubic-bezier(0.25, 0.8, 0.25, 1);
+    position: relative; /* Untuk overlay/caption jika diperlukan */
+}
+
+.screenshot-item:hover {
+    transform: translateY(-8px) scale(1.03);    
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
+}
+
+.screenshot-item img {
+    width: 100%;
+    height: auto; /* Biarkan aspek rasio alami */
+    display: block;
+    /* Untuk efek zoom halus pada gambar di dalam item saat hover (opsional) */
+    /* transition: transform 0.5s cubic-bezier(0.165, 0.84, 0.44, 1); */
+}
+/*
+.screenshot-item:hover img {
+    transform: scale(1.1);
+}
+*/
+
+/* === Project Team Section - Kartu Tim yang Stylish === */
+.project-team {
+    padding: 80px 0;
+    background-color: #f0f4f7; /* Latar belakang section tim yang berbeda, misal abu-abu muda kebiruan */
+}
+
+.team-members {
+    display: grid; /* Menggunakan grid untuk tata letak tim */
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 35px; /* Jarak antar kartu tim */
+    justify-content: center;
+}
+
+.team-member {
+    background-color: #ffffff;
+    border-radius: 15px; /* Sudut lebih melengkung */
+    padding: 30px 25px; /* Padding internal kartu */
+    text-align: center;
+    box-shadow: 0 8px 25px rgba(100, 120, 140, 0.08); /* Shadow yang lebih soft */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.team-member:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 12px 35px rgba(100, 120, 140, 0.15);
+}
+
+.team-photo {
+    width: 130px; /* Ukuran foto sedikit lebih besar */
+    height: 130px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin: 0 auto 20px; /* Jarak bawah foto */
+    border: 5px solid #fff; /* Border putih di sekitar foto */
+    box-shadow: 0 0 0 3px #2bd6ec, 0 5px 15px rgba(43, 214, 236, 0.3); /* Efek border ganda dan glow */
+}
+
+.team-photo:hover {
+    transform: scale(1.50);
+}
+
+.team-member h3 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5rem; /* Nama lebih besar */
+    margin-bottom: 8px;
+    color: #1A2E3A;
+    font-weight: 700;
+}
+
+.team-member .team-role {
+    font-size: 1rem;
+    color: #2bd6ec; /* Warna peran sesuai aksen */
+    margin-bottom: 18px;
+    font-weight: 600;
+    /* font-style: normal; */ /* Hapus italic jika tidak diinginkan */
+}
+
+.social-links a {
+    color: #586F7C; /* Warna ikon sosial yang lebih netral */
+    text-decoration: none;
+    margin: 0 8px; /* Jarak ikon sosial */
+    font-size: 0.95rem;
+    transition: color 0.3s ease, transform 0.2s ease;
+    display: inline-block; /* Untuk transform */
+}
+
+.social-links a:hover {
+    color: #2bd6ec; /* Warna hover ikon sosial */
+    transform: scale(1.1);
+}
+
+.hidden {
+    display: none; /* Sembunyikan card yang memiliki kelas 'hidden' */
+}
+
+/* Animasi */
+@keyframes fadeInUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to{
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* * === Penyesuaian Responsif Tambahan (jika diperlukan) === */
+@media (max-width: 992px) { /* Breakpoint tablet yang lebih besar */
+    .project-detail-page .container {
+        padding: 0 25px;
+    }
+    .project-hero-content h1 {
+        font-size: 3rem;
+    }
+    .project-hero-content p {
+        font-size: 1.25rem;
+    }
+    .project-detail-page section h2 {
+        font-size: 2.4rem;
+    }
+}
+
+/* Media Queries untuk Responsif */
+@media (max-width: 768px) {
+    header nav {
+        padding: 0.8rem 1rem; /* Sesuaikan padding header di mobile */
+    }
+    .hero-content h1 {
+                margin-bottom: 15px;
+            }
+            .hero-content p {
+                margin-bottom: 25px;
+            }
+            .cta-button {
+                padding: 10px 20px;
+            }
+
+    .menu-toggle {
+        display: flex;
+        position: absolute;
+        top: 50%;
+        right: 15px;
+        transform: translateY(-50%);
+        z-index: 1001; /* Pastikan di atas menu dropdown */
+    }
+
+    header ul {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background-color: #3a3a3a; /* Sedikit lebih terang dari header */
+        padding: 10px 0;
+        z-index: 1000; /* Di bawah menu-toggle tapi di atas konten lain */
+        box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+    }
+
+    header ul.active {
+        display: flex;
+    }
+
+    header ul li {
+        margin: 0;
+        width: 100%;
+        text-align: center; /* Pusatkan item menu */
+    }
+
+    header ul li a {
+        padding: 12px 0; /* Perbesar area klik */
+        display: block;
+        border-bottom: 1px solid #4f4f4f; /* Garis pemisah antar item */
+    }
+    header ul li:last-child a {
+        border-bottom: none; /* Hapus border untuk item terakhir */
+    }
+
+    header ul li a:hover::after { /* Sembunyikan animasi garis bawah di mobile */
+        width: 0;
+    }
+    header ul li a:hover {
+        background-color: #4f4f4f; /* Warna latar saat hover di mobile */
+        color: #2bd6ec;
+    }
+
+    .menu-toggle.active .bar:nth-child(1) {
+        transform: rotate(-45deg) translate(-6px, 7px); /* Sesuaikan translasi */
+    }
+    .menu-toggle.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+    .menu-toggle.active .bar:nth-child(3) {
+        transform: rotate(45deg) translate(-6px, -7px); /* Sesuaikan translasi */
+    }
+
+    section {
+        padding: 60px 15px;
+    }
+
+    section h2 {
+        font-size: 2.2rem;
+    }
+
+    .hero {
+        height: auto;
+        padding: 100px 20px; /* Padding lebih besar untuk hero di mobile */
+    }
+
+    .hero-content h1 {
+        font-size: 2.5rem; /* Ukuran font hero di mobile */
+    }
+
+    .hero-content p {
+        font-size: 1.1rem;
+    }
+
+    .cta-button {
+        padding: 10px 25px;
+        font-size: 1rem;
+    }
+
+    .gallery {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+        padding: 0 3%;
+    }
+    .gallery-item img, .gallery-item .overlay {
+        height: 220px; /* Sesuaikan tinggi gambar/overlay di mobile */
+    }
+
+
+    .about-content {
+        flex-direction: column; /* Tumpuk foto dan teks di mobile */
+        text-align: center;
+    }
+
+    .profile-pic {
+        width: 150px;
+        height: 150px;
+        margin-bottom: 20px; /* Jarak antara foto dan teks */
+    }
+
+    #tentang p {
+        text-align: center; /* Atau justify jika masih terlihat bagus */
+    }
+
+    .project-hero {
+        padding: 100px 20px 60px;
+    }
+    .project-hero-content h1 {
+        font-size: 2.6rem;
+    }
+    .project-hero-content p {
+        font-size: 1.15rem;
+    }
+
+    .project-detail-page section h2 {
+        font-size: 2.1rem;
+        margin-bottom: 20px;
+        padding-bottom: 15px;
+    }
+    .project-detail-page section h2::after {
+        width: 60px;
+        height: 2.5px;
+    }
+
+    .project-overview p {
+        font-size: 1.1rem;
+        line-height: 1.8;
+    }
+
+    .screenshot-gallery {
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 25px;
+    }
+
+    .team-members {
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 25px;
+    }
+}
+
+@media (max-width: 480px) {
+    header .logo {
+        font-size: 1.5rem;
+    }
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+
+    .hero-content p {
+        font-size: 1rem;
+    }
+
+    section h2 {
+        font-size: 1.8rem; /* Judul section lebih kecil lagi */
+    }
+    section h2::after {
+        width: 70px; /* Garis bawah lebih pendek */
+    }
+
+    .gallery-item img, .gallery-item .overlay {
+        height: 200px;
+    }
+
+    .profile-pic {
+        width: 130px;
+        height: 130px;
+    }
+    #tentang p {
+        font-size: 1rem;
+    }
+    #kontak p {
+        font-size: 1rem;
+    }
+
+    .project-detail-page .container {
+        padding: 0 20px;
+    }
+    .project-hero-content h1 {
+        font-size: 2.2rem;
+    }
+     .project-hero-content p {
+        font-size: 1.05rem;
+    }
+    .project-detail-page section h2 {
+        font-size: 1.9rem;
+    }
+
+    .project-overview p {
+        font-size: 1rem;
+    }
+
+    .project-figma-link {
+        padding: 12px 25px;
+        font-size: 1rem;
+    }
+
+    .screenshot-gallery {
+        gap: 20px;
+    }
+
+    .team-member {
+        padding: 25px 20px;
+    }
+    .team-photo {
+        width: 110px;
+        height: 110px;
+    }
+    .team-member h3 {
+        font-size: 1.3rem;
+    }
+    .team-member .team-role {
+        font-size: 0.9rem;
+    }
+    #proyek {
+    padding: 40px 10px;
+  }
+}

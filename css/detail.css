@@ -3,21 +3,20 @@
    =================================================================== */
 
 /* === 1. VARIABLES (CUSTOM PROPERTIES) === */
-/* Semua warna dan font diatur di sini. Ubah di sini, berubah di semua tempat. */
 :root {
     /* Warna */
     --c-primary: #2bd6ec;      /* Sian cerah sebagai aksen utama */
     --c-primary-dark: #1AA7B8;  /* Versi lebih gelap untuk hover */
     --c-heading: #1A2E3A;      /* Biru sangat gelap untuk judul */
     --c-body-text: #48545C;     /* Abu-abu gelap untuk teks paragraf */
-    --c-text-light: #586F7C;     /* Abu-abu lebih terang untuk sub-teks */
+    --c-text-light: #586F7C;    /* Abu-abu lebih terang untuk sub-teks */
     --c-white: #ffffff;
     --c-border: #eaf0f3;
 
     /* Warna Latar Belakang */
     --c-bg-light: #f8f9fa;      /* Latar belakang utama (off-white) */
     --c-bg-white: #ffffff;      /* Latar belakang untuk card */
-    --c-bg-section-alt: #f0f4f7;   /* Latar belakang untuk section alternatif (misal: tim) */
+    --c-bg-section-alt: #f0f4f7;  /* Latar belakang untuk section alternatif (misal: tim) */
     
     /* Tipografi */
     --ff-heading: 'Montserrat', sans-serif;
@@ -27,7 +26,7 @@
     --transition-main: all 0.3s ease-in-out;
 }
 
-/* === 2. GLOBAL STYLES (Jika belum ada di CSS utama Anda) === */
+/* === 2. GLOBAL STYLES === */
 body {
     font-family: var(--ff-body);
     line-height: 1.7;
@@ -48,10 +47,6 @@ body {
     padding-top: 0;
     background-color: var(--c-bg-white);
 }
-
-/* .project-details-section {
-  padding: 80px 0 100px;
-} */
 
 /* --- Standarisasi Judul Section --- */
 .project-detail-page section h2 {
@@ -134,7 +129,8 @@ body {
     border: 1px solid var(--c-border); 
     border-radius: 15px; 
     padding: 25px; 
-    box-shadow: 0 5px 20px rgba(0,0,0,0.05); 
+    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    overflow: hidden; /* Tambahan: Mencegah konten keluar dari sudut rounded */
 }
 
 .detail-card h3 { 
@@ -148,12 +144,10 @@ body {
     padding-bottom: 15px; 
 }
 
+/* --- Styling Tabel Tipografi --- */
 .type-table { 
     width: 100%; 
     border-collapse: collapse; 
-    display: block;
-    overflow-x: auto;
-    white-space: nowrap;
 }
 
 .type-table th, 
@@ -169,6 +163,7 @@ body {
     font-weight: 600; 
 }
 
+/* --- Styling Palet Warna --- */
 .swatch-container { 
     display: flex; 
     flex-direction: column; 
@@ -214,18 +209,17 @@ body {
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
 }
 
-/* --- Screenshots Section --- */
+/* --- Sections Lainnya (Screenshots, Team) --- */
+/* ... (tidak ada perubahan di sini, sama seperti kode asli Anda) ... */
 .project-screenshots {
     padding: 80px 0;
     background-color: var(--c-white);
 }
-
 .screenshot-gallery {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 30px;
 }
-
 .screenshot-item {
     background-color: var(--c-white);
     border-radius: 12px;
@@ -233,31 +227,25 @@ body {
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
     transition: var(--transition-main);
 }
-
 .screenshot-item:hover {
-    transform: translateY(-8px) scale(1.03);     
+    transform: translateY(-8px) scale(1.03);    
     box-shadow: 0 15px 40px rgba(0, 0, 0, 0.12);
 }
-
 .screenshot-item img {
     width: 100%;
     height: auto;
     display: block;
 }
-
-/* --- Team Section --- */
 .project-team {
     padding: 80px 0;
     background-color: var(--c-bg-section-alt);
 }
-
 .team-members {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 35px;
     justify-content: center;
 }
-
 .team-member {
     background-color: var(--c-white);
     border-radius: 15px;
@@ -266,12 +254,10 @@ body {
     box-shadow: 0 8px 25px rgba(100, 120, 140, 0.08);
     transition: var(--transition-main);
 }
-
 .team-member:hover {
     transform: translateY(-10px);
     box-shadow: 0 12px 35px rgba(100, 120, 140, 0.15);
 }
-
 .team-photo {
     width: 130px;
     height: 130px;
@@ -282,25 +268,21 @@ body {
     box-shadow: 0 0 0 3px var(--c-primary), 0 5px 15px rgba(43, 214, 236, 0.3);
     transition: transform 0.3s ease;
 }
-
 .team-photo:hover {
     transform: scale(1.1);
 }
-
 .team-member h3 {
     font-family: var(--ff-heading);
     font-size: 1.5rem;
     margin-bottom: 8px;
     color: var(--c-heading);
 }
-
 .team-member .team-role {
     font-size: 1rem;
     color: var(--c-primary);
     margin-bottom: 18px;
     font-weight: 600;
 }
-
 .social-links a {
     color: var(--c-text-light);
     text-decoration: none;
@@ -309,23 +291,17 @@ body {
     transition: var(--transition-main);
     display: inline-block;
 }
-
 .social-links a:hover {
     color: var(--c-primary);
     transform: scale(1.1);
 }
 
-
-/* === 4. RESPONSIVE MEDIA QUERIES === */
-@media (min-width: 1200px) {
-  .details-grid {
-    gap: 30px;
-  }
-}
+/* === 4. RESPONSIVE MEDIA QUERIES (BAGIAN YANG DIPERBAIKI) === */
 
 @media (min-width: 992px) {
     .details-grid {
         grid-template-columns: 1fr 1fr;
+        gap: 40px;
     }
 }
 
@@ -335,19 +311,64 @@ body {
     .project-hero-content h1 { font-size: 2.6rem; }
     .project-hero-content p { font-size: 1.15rem; }
     .project-overview p { font-size: 1.1rem; }
+    
     .screenshot-gallery, .team-members {
-        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-        gap: 25px;
-    }
-    .swatch-container {
-        flex-direction: row;
-        flex-wrap: wrap;
+        grid-template-columns: 1fr; /* Diubah agar selalu 1 kolom di tablet ke bawah */
         gap: 25px;
     }
 
-  .swatch {
-    width: calc(50% - 12.5px); /* 2 kolom dengan jarak 25px */
-  }
+    /* PERBAIKAN: Tata letak palet warna diubah menjadi 2 kolom */
+    .swatch-container {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 20px;
+    }
+    .swatch {
+        /* Lebar diatur agar bisa 2 kolom dengan jarak */
+        width: calc(50% - 10px); 
+        gap: 15px;
+    }
+}
+
+/* === BAGIAN BARU UNTUK MOBILE KECIL (< 600px) === */
+@media (max-width: 600px) {
+    /* === PERBAIKAN TABEL TIPOGRAFI === */
+    .type-table {
+        border: none; /* Hapus border luar tabel */
+    }
+    .type-table thead {
+        display: none; /* Sembunyikan header tabel (Role, Example, Weight) */
+    }
+    .type-table tr {
+        display: block; /* Setiap baris menjadi satu blok terpisah */
+        border-bottom: 2px solid var(--c-text-light);
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+    }
+    .type-table tr:last-child {
+        margin-bottom: 0;
+        border-bottom: none;
+        padding-bottom: 0;
+    }
+    .type-table td {
+        display: block; /* Setiap sel menjadi satu baris penuh */
+        text-align: right; /* Pindahkan konten ke kanan */
+        padding: 8px 5px;
+        border-bottom: 1px dotted var(--c-border);
+        position: relative;
+    }
+    .type-table td:last-child {
+        border-bottom: none;
+    }
+    .type-table td::before {
+        /* Ambil konten dari atribut 'data-label' di HTML */
+        content: attr(data-label); 
+        position: absolute;
+        left: 5px;
+        font-weight: bold;
+        color: var(--c-heading);
+        text-align: left;
+    }
 }
 
 @media (max-width: 480px) {
@@ -355,9 +376,17 @@ body {
     .project-hero-content h1 { font-size: 2.2rem; }
     .project-hero-content p { font-size: 1.05rem; }
     .project-overview p { font-size: 1rem; }
-    .project-figma-link { padding: 12px 25px; font-size: 1rem; }
+    
     .team-member { padding: 25px 20px; }
     .team-photo { width: 110px; height: 110px; }
     .team-member h3 { font-size: 1.3rem; }
     .team-member .team-role { font-size: 0.9rem; }
+
+    /* === PERBAIKAN PALET WARNA DI LAYAR SANGAT KECIL === */
+    .swatch-container {
+        flex-direction: column; /* Kembalikan ke 1 kolom */
+    }
+    .swatch {
+        width: 100%; /* Setiap item warna mengambil lebar penuh */
+    }
 }

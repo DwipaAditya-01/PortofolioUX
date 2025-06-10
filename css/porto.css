@@ -78,12 +78,12 @@ header nav {
 
 header .logo {
     font-family: var(--font-heading);
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     font-weight: 700;
     color: var(--primary-color);
     display: flex;
     align-items: center;
-    gap: px;
+    gap: 2px;
     text-decoration: none;
 }
 

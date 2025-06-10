@@ -1,30 +1,19 @@
 document.addEventListener('DOMContentLoaded', function() {
-    // Animasi Fade-in untuk Hero Section
-    // const heroSection = document.querySelector('.hero');
-    // if (heroSection) {
-    //     heroSection.style.opacity = 0;
-    //     let opacity = 0;
-    //     const fadeInInterval = setInterval(function() {
-    //         if (opacity < 1) {
-    //             opacity += 0.02; // Kecepatan fade-in
-    //             heroSection.style.opacity = opacity;
-    //         } else {
-    //             clearInterval(fadeInInterval);
-    //         }
-    //     }, 30); // Interval waktu fade-in
-    // }
 
+    // ==================================================
     // Fungsionalitas Hamburger Menu
+    // ==================================================
     const menuToggle = document.querySelector('.menu-toggle');
     const navLinks = document.getElementById('nav-links');
 
     if (menuToggle && navLinks) {
-        menuToggle.addEventListener('click', function() {
+        menuToggle.addEventListener('click', function(e) {
+            e.stopPropagation(); // Mencegah event 'click' menyebar ke document
             navLinks.classList.toggle('active');
-            menuToggle.classList.toggle('active'); // Untuk animasi hamburger menjadi X
+            menuToggle.classList.toggle('active');
         });
 
-        // Menutup menu saat link di klik (berguna untuk navigasi satu halaman)
+        // Menutup menu saat link di klik (untuk navigasi satu halaman)
         const allNavLinks = navLinks.querySelectorAll('a');
         allNavLinks.forEach(link => {
             link.addEventListener('click', function() {
@@ -34,44 +23,61 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
         });
-    }
 
-    // Fungsionalitas View More untuk Galeri Proyek
-    const viewMoreButton = document.getElementById('view-more');
-
-    if (viewMoreButton) {
-        viewMoreButton.addEventListener('click', function (e) {
-            e.preventDefault();
-
-            const allItems = document.querySelectorAll('.gallery-item');
-            const isExpanded = viewMoreButton.dataset.expanded === 'true';
-
-            if (isExpanded) {
-                // View LESS: Tambahkan efek hilang
-                allItems.forEach((item, index) => {
-                    if (index >= 3) {
-                        item.classList.add('hidden');
-                    }
-                });
-                viewMoreButton.textContent = 'View More';
-                viewMoreButton.dataset.expanded = 'false';
-            } else {
-                // View MORE: Tampilkan dengan animasi
-                allItems.forEach(item => item.classList.remove('hidden'));
-
-                viewMoreButton.textContent = 'View Less';
-                viewMoreButton.dataset.expanded = 'true';
-
-                // Scroll halus ke flagship section
-                const flagship = document.getElementById('proyek');
-                if (flagship) {
-                    flagship.scrollIntoView({ behavior: 'smooth' });
-                }
+        // Menutup menu jika mengklik di luar area menu
+        document.addEventListener('click', function() {
+            if (navLinks.classList.contains('active')) {
+                navLinks.classList.remove('active');
+                menuToggle.classList.remove('active');
             }
         });
     }
 
 
-    flagship.scrollIntoView({ behavior: 'smooth' });
+    // ==================================================
+    // Fungsionalitas "View More" dengan Animasi Halus
+    // ==================================================
+    const viewMoreButton = document.getElementById('view-more');
+    const galleryItems = document.querySelectorAll('.gallery-item');
+
+    if (viewMoreButton && galleryItems.length > 3) {
+        // Sembunyikan item lebih dari 3 saat halaman pertama kali dimuat
+        galleryItems.forEach((item, index) => {
+            if (index >= 3) {
+                item.classList.add('item-hidden');
+            }
+        });
+
+        viewMoreButton.addEventListener('click', function(e) {
+            e.preventDefault();
+
+            const isExpanded = this.dataset.expanded === 'true';
+
+            if (isExpanded) {
+                // Sembunyikan item (View Less)
+                galleryItems.forEach((item, index) => {
+                    if (index >= 3) {
+                        item.classList.add('item-hidden');
+                    }
+                });
+                this.textContent = 'View More';
+                this.dataset.expanded = 'false';
+
+                // Scroll ke atas ke tombol setelah item disembunyikan
+                this.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+            } else {
+                // Tampilkan item (View More)
+                galleryItems.forEach(item => {
+                    item.classList.remove('item-hidden');
+                });
+                this.textContent = 'View Less';
+                this.dataset.expanded = 'true';
+            }
+        });
+    } else if (viewMoreButton) {
+        // Jika item kurang dari atau sama dengan 3, sembunyikan tombol "View More"
+        viewMoreButton.style.display = 'none';
+    }
 
 });

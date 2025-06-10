@@ -49,14 +49,14 @@ body {
     background-color: var(--c-bg-white);
 }
 
-.project-details-section {
-  padding: 80px 0 100px; /* sebelumnya hanya 80px 0 */
-}
+/* .project-details-section {
+  padding: 80px 0 100px;
+} */
 
 /* --- Standarisasi Judul Section --- */
 .project-detail-page section h2 {
     font-family: var(--ff-heading);
-    font-size: 2.6rem;
+    font-size: 2rem;
     font-weight: 700;
     color: var(--c-heading);
     text-align: center;
@@ -104,7 +104,7 @@ body {
 
 /* --- Project Overview Section --- */
 .project-overview {
-    padding: 80px 0;
+    padding: 40px 0;
     background-color: #fdfdfd;
 }
 
@@ -114,34 +114,6 @@ body {
     color: var(--c-body-text);
     margin-bottom: 25px;
     text-align: justify;
-}
-
-.project-figma-link {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 35px;
-    padding: 14px 30px;
-    font-size: 1.05rem;
-    font-weight: 600;
-    background-color: var(--c-primary);
-    color: var(--c-white);
-    border-radius: 50px;
-    text-decoration: none;
-    transition: var(--transition-main);
-    box-shadow: 0 4px 20px rgba(43, 214, 236, 0.3);
-}
-
-.project-figma-link:hover {
-    background-color: var(--c-primary-dark);
-    transform: translateY(-3px) scale(1.02);
-    box-shadow: 0 6px 25px rgba(26, 167, 184, 0.4);
-}
-
-.figma-icon {
-    margin-left: 12px;
-    width: 22px;
-    height: 22px;
 }
 
 /* --- Typography & Color Palette Section --- */
@@ -161,17 +133,17 @@ body {
     background-color: var(--c-white); 
     border: 1px solid var(--c-border); 
     border-radius: 15px; 
-    padding: 30px; 
+    padding: 25px; 
     box-shadow: 0 5px 20px rgba(0,0,0,0.05); 
 }
 
 .detail-card h3 { 
     font-family: var(--ff-heading); 
-    font-size: 1.8rem; 
+    font-size: 1.5rem; 
     color: var(--c-heading);
     margin-top: 0; 
     margin-bottom: 20px; 
-    text-align: left; 
+    text-align: center; 
     border-bottom: 2px solid var(--c-bg-section-alt); 
     padding-bottom: 15px; 
 }
@@ -180,8 +152,8 @@ body {
     width: 100%; 
     border-collapse: collapse; 
     display: block;
-  overflow-x: auto;
-  white-space: nowrap;
+    overflow-x: auto;
+    white-space: nowrap;
 }
 
 .type-table th, 
@@ -358,7 +330,7 @@ body {
 }
 
 @media (max-width: 768px) {
-    .project-detail-page section h2 { font-size: 2.1rem; }
+    .project-detail-page section h2 { font-size: 1.9rem; }
     .project-hero { padding: 100px 20px 60px; }
     .project-hero-content h1 { font-size: 2.6rem; }
     .project-hero-content p { font-size: 1.15rem; }
@@ -379,7 +351,7 @@ body {
 }
 
 @media (max-width: 480px) {
-    .project-detail-page section h2 { font-size: 1.9rem; }
+    .project-detail-page section h2 { font-size: 1.5rem; }
     .project-hero-content h1 { font-size: 2.2rem; }
     .project-hero-content p { font-size: 1.05rem; }
     .project-overview p { font-size: 1rem; }

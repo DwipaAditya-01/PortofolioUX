@@ -5,7 +5,8 @@
 /* === 1. VARIABLES (CUSTOM PROPERTIES) === */
 :root {
     /* Warna */
-    --c-primary: #2bd6ec;      /* Sian cerah sebagai aksen utama */
+    --c-primary: #2bd6ec; 
+    --c-primary-all:#336A86;     /* Sian cerah sebagai aksen utama */
     --c-primary-dark: #1AA7B8;  /* Versi lebih gelap untuk hover */
     --c-heading: #1A2E3A;      /* Biru sangat gelap untuk judul */
     --c-body-text: #48545C;     /* Abu-abu gelap untuk teks paragraf */

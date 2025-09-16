@@ -111,7 +111,7 @@ section {
 
 @keyframes fadeInDropdown {
     from { opacity: 0; transform: translateY(-10px); }
-    to { opacity: 1; transform: translateY(0); } /* DIPERBAIKI: Sintaks yang salah */
+    to { opacity: 1; transform: translateY(0); }
 }
 
 
@@ -344,15 +344,13 @@ nav {
 /* =================================================================
    7. PROJECTS SECTION
 ================================================================= */
-
-/* --- Header & Filter Dropdown --- */
 .proyek-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-bottom: 3rem;
     flex-wrap: wrap;
-    position: relative; /* Penting untuk z-index */
+    position: relative;
     z-index: 10;
 }
 
@@ -441,29 +439,20 @@ nav {
     transition: transform 0.2s ease, color 0.2s ease;
 }
 
-.has-submenu:hover > a::after {
+.has-submenu:hover > a::after,
+.has-submenu.open > a::after {
     color: #fff;
     transform: translateX(2px);
 }
 
 .submenu {
     display: none;
-    position: absolute;
-    top: -5px; /* Sesuaikan agar lebih sejajar */
-    left: 100%;
-    width: 200px;
-    background: #1a1732;
-    border: 1px solid var(--border-color);
-    border-radius: 12px;
-    padding: 0.5rem;
-    margin-left: 10px;
-    box-shadow: 0px 4px 8px 0px rgba(0,0,0,0.2);
-    backdrop-filter: blur(8px);
-    animation: fadeInDropdown 0.2s ease;
-    z-index: 101;
+    list-style: none;
+    padding-left: 1rem; /* Beri indentasi untuk submenu */
+    margin-top: 0.5rem;
 }
 
-.has-submenu:hover .submenu {
+.has-submenu.open .submenu {
     display: block;
 }
 
@@ -472,7 +461,6 @@ nav {
     font-size: 0.9rem;
 }
 
-/* --- Project Gallery --- */
 .gallery {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
@@ -771,19 +759,65 @@ footer p {
 ================================================================= */
 @media (max-width: 768px) {
     section {
-        padding: 4rem 1rem;
+        padding: 4rem 1.5rem;
+    }
+    h1 {
+        font-size: 2.2rem;
     }
     h2 {
-        margin-bottom: 2rem; /* Tambahkan margin-bottom lagi untuk h2 di mobile */
+        font-size: 1.8rem;
+        margin-bottom: 2rem;
     }
+
+    /* === PERBAIKAN UTAMA DI SINI === */
+    .hero {
+        min-height: auto; /* Biarkan tinggi section menyesuaikan konten */
+        padding: 8rem 1.5rem 4rem 1.5rem;
+        flex-direction: column; /* Susun konten dan logo secara vertikal */
+    }
+
     .floating-figma-logo {
-        display: none;
+        position: static; /* KUNCI UTAMA: Hapus posisi absolut */
+        animation: none; /* Matikan animasi mengambang di mobile */
+        width: 80px; /* Perkecil ukuran logo */
+        margin-top: 3rem; /* Beri jarak dari tombol di atasnya */
     }
+    /* === AKHIR PERBAIKAN === */
+
     .proyek-header {
         flex-direction: column;
         gap: 2rem;
         align-items: center;
-        margin-bottom: 2rem;
+    }
+    .filter-menu {
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90vw;
+        max-width: 250px;
+    }
+    .submenu {
+        position: static;
+        width: 100%;
+        border: none;
+        box-shadow: none;
+        margin-left: 0;
+        margin-top: 0;
+        padding: 0;
+        background: transparent;
+        animation: none;
+    }
+    .has-submenu:hover .submenu {
+        display: none;
+    }
+    .has-submenu.open .submenu {
+        display: block;
+    }
+    .has-submenu > a::after {
+        content: '▼';
+        transition: transform 0.3s ease;
+    }
+    .has-submenu.open > a::after {
+        transform: rotate(180deg);
     }
     .menu-toggle {
         display: flex;

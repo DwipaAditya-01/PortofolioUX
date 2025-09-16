@@ -26,17 +26,17 @@ document.addEventListener('DOMContentLoaded', function() {
 
     /**
      * ===================================================================
-     * Fungsionalitas Filter Dropdown Proyek
+     * Fungsionalitas Filter Dropdown Proyek (RESPONSIVE)
      * ===================================================================
      */
     const mainFilterBtn = document.getElementById('main-filter-btn');
     const filterMenu = document.getElementById('filter-menu');
     const galleryItems = document.querySelectorAll('.gallery .gallery-item');
     const filterBtnText = document.getElementById('filter-btn-text');
+    const figmaSubmenuToggle = document.querySelector('.has-submenu > a');
 
     if (mainFilterBtn && filterMenu && galleryItems.length > 0) {
         
-        // Fungsi utama untuk memfilter proyek
         const filterProjects = (filterValue) => {
             galleryItems.forEach(item => {
                 const itemCategory = item.dataset.filter;
@@ -49,35 +49,37 @@ document.addEventListener('DOMContentLoaded', function() {
             setTimeout(() => { if (typeof AOS !== 'undefined') { AOS.refresh(); } }, 400);
         };
 
-        // Menampilkan/menyembunyikan menu dropdown utama
         mainFilterBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             filterMenu.classList.toggle('show');
         });
 
-        // Menambahkan fungsionalitas ke setiap item di dalam menu
         filterMenu.addEventListener('click', (e) => {
             const target = e.target;
-            // Hanya bereaksi jika yang diklik adalah link <a> dengan data-filter
             if (target.tagName === 'A' && target.dataset.filter) {
                 e.preventDefault();
                 const filterValue = target.dataset.filter;
                 const filterText = target.textContent;
                 
-                // Jalankan fungsi filter
                 filterProjects(filterValue);
                 
-                // Perbarui teks tombol utama
                 if (filterBtnText) {
                     filterBtnText.textContent = filterText;
                 }
                 
-                // Tutup menu utama
                 filterMenu.classList.remove('show');
             }
         });
 
-        // Menutup dropdown jika klik di luar
+        // Logika untuk membuka submenu dengan KLIK
+        if (figmaSubmenuToggle) {
+            figmaSubmenuToggle.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation(); // Mencegah menu utama tertutup
+                this.parentElement.classList.toggle('open');
+            });
+        }
+
         window.addEventListener('click', (e) => {
             if (!mainFilterBtn.contains(e.target) && !filterMenu.contains(e.target)) {
                 filterMenu.classList.remove('show');

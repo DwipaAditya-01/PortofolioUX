@@ -1,83 +1,175 @@
 document.addEventListener('DOMContentLoaded', function() {
 
-    // ==================================================
-    // Fungsionalitas Hamburger Menu
-    // ==================================================
+    /**
+     * ===================================================================
+     * Navigasi Mobile (Hamburger Menu)
+     * ===================================================================
+     */
     const menuToggle = document.querySelector('.menu-toggle');
     const navLinks = document.getElementById('nav-links');
 
     if (menuToggle && navLinks) {
-        menuToggle.addEventListener('click', function(e) {
-            e.stopPropagation(); // Mencegah event 'click' menyebar ke document
+        const toggleMenu = () => {
             navLinks.classList.toggle('active');
             menuToggle.classList.toggle('active');
+        };
+        menuToggle.addEventListener('click', (e) => { e.stopPropagation(); toggleMenu(); });
+        navLinks.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', () => { if (navLinks.classList.contains('active')) { toggleMenu(); } });
         });
-
-        // Menutup menu saat link di klik (untuk navigasi satu halaman)
-        const allNavLinks = navLinks.querySelectorAll('a');
-        allNavLinks.forEach(link => {
-            link.addEventListener('click', function() {
-                if (navLinks.classList.contains('active')) {
-                    navLinks.classList.remove('active');
-                    menuToggle.classList.remove('active');
-                }
-            });
-        });
-
-        // Menutup menu jika mengklik di luar area menu
-        document.addEventListener('click', function() {
-            if (navLinks.classList.contains('active')) {
-                navLinks.classList.remove('active');
-                menuToggle.classList.remove('active');
+        document.addEventListener('click', (e) => {
+            if (navLinks.classList.contains('active') && !menuToggle.contains(e.target) && !navLinks.contains(e.target)) {
+                toggleMenu();
             }
         });
     }
 
+    /**
+     * ===================================================================
+     * Fungsionalitas Filter Dropdown Proyek
+     * ===================================================================
+     */
+    const mainFilterBtn = document.getElementById('main-filter-btn');
+    const filterMenu = document.getElementById('filter-menu');
+    const galleryItems = document.querySelectorAll('.gallery .gallery-item');
+    const filterBtnText = document.getElementById('filter-btn-text');
 
-    // ==================================================
-    // Fungsionalitas "View More" dengan Animasi Halus
-    // ==================================================
-    const viewMoreButton = document.getElementById('view-more');
-    const galleryItems = document.querySelectorAll('.gallery-item');
+    if (mainFilterBtn && filterMenu && galleryItems.length > 0) {
+        
+        // Fungsi utama untuk memfilter proyek
+        const filterProjects = (filterValue) => {
+            galleryItems.forEach(item => {
+                const itemCategory = item.dataset.filter;
+                if (filterValue === 'all' || itemCategory === filterValue) {
+                    item.classList.remove('hide-by-filter');
+                } else {
+                    item.classList.add('hide-by-filter');
+                }
+            });
+            setTimeout(() => { if (typeof AOS !== 'undefined') { AOS.refresh(); } }, 400);
+        };
 
-    if (viewMoreButton && galleryItems.length > 3) {
-        // Sembunyikan item lebih dari 3 saat halaman pertama kali dimuat
-        galleryItems.forEach((item, index) => {
-            if (index >= 3) {
-                item.classList.add('item-hidden');
+        // Menampilkan/menyembunyikan menu dropdown utama
+        mainFilterBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            filterMenu.classList.toggle('show');
+        });
+
+        // Menambahkan fungsionalitas ke setiap item di dalam menu
+        filterMenu.addEventListener('click', (e) => {
+            const target = e.target;
+            // Hanya bereaksi jika yang diklik adalah link <a> dengan data-filter
+            if (target.tagName === 'A' && target.dataset.filter) {
+                e.preventDefault();
+                const filterValue = target.dataset.filter;
+                const filterText = target.textContent;
+                
+                // Jalankan fungsi filter
+                filterProjects(filterValue);
+                
+                // Perbarui teks tombol utama
+                if (filterBtnText) {
+                    filterBtnText.textContent = filterText;
+                }
+                
+                // Tutup menu utama
+                filterMenu.classList.remove('show');
             }
         });
 
+        // Menutup dropdown jika klik di luar
+        window.addEventListener('click', (e) => {
+            if (!mainFilterBtn.contains(e.target) && !filterMenu.contains(e.target)) {
+                filterMenu.classList.remove('show');
+            }
+        });
+    }
+
+    /**
+     * ===================================================================
+     * Fungsionalitas "View More" untuk Galeri Proyek
+     * ===================================================================
+     */
+    const viewMoreButton = document.getElementById('view-more');
+    const initialItemCount = 6;
+
+    if (viewMoreButton && galleryItems.length > initialItemCount) {
+        galleryItems.forEach((item, index) => {
+            if (index >= initialItemCount) { item.classList.add('item-hidden'); }
+        });
         viewMoreButton.addEventListener('click', function(e) {
             e.preventDefault();
-
             const isExpanded = this.dataset.expanded === 'true';
-
+            galleryItems.forEach((item, index) => {
+                if (index >= initialItemCount) { item.classList.toggle('item-hidden', isExpanded); }
+            });
+            this.textContent = isExpanded ? 'View More' : 'View Less';
+            this.dataset.expanded = !isExpanded;
             if (isExpanded) {
-                // Sembunyikan item (View Less)
-                galleryItems.forEach((item, index) => {
-                    if (index >= 3) {
-                        item.classList.add('item-hidden');
-                    }
-                });
-                this.textContent = 'View More';
-                this.dataset.expanded = 'false';
-
-                // Scroll ke atas ke tombol setelah item disembunyikan
-                this.scrollIntoView({ behavior: 'smooth', block: 'center' });
-
-            } else {
-                // Tampilkan item (View More)
-                galleryItems.forEach(item => {
-                    item.classList.remove('item-hidden');
-                });
-                this.textContent = 'View Less';
-                this.dataset.expanded = 'true';
+                setTimeout(() => { this.scrollIntoView({ behavior: 'smooth', block: 'center' }); }, 400);
             }
+            setTimeout(() => { if (typeof AOS !== 'undefined') { AOS.refresh(); } }, 400);
         });
     } else if (viewMoreButton) {
-        // Jika item kurang dari atau sama dengan 3, sembunyikan tombol "View More"
         viewMoreButton.style.display = 'none';
     }
 
+    /**
+     * ===================================================================
+     * Efek 3D Tilt pada Kartu Kemampuan
+     * ===================================================================
+     */
+    const skillCards = document.querySelectorAll('.skill-card');
+    if (skillCards.length > 0 && typeof VanillaTilt !== 'undefined') {
+        VanillaTilt.init(skillCards, { max: 15, speed: 400, glare: true, "max-glare": 0.5 });
+    }
+
+    /**
+     * ===================================================================
+     * Animasi "The Reveal" pada Section Kontak
+     * ===================================================================
+     */
+    const ctaKontak = document.getElementById('cta-kontak');
+    const kontakLinksContainer = document.getElementById('kontak-links-container');
+    if (ctaKontak && kontakLinksContainer) {
+        ctaKontak.addEventListener('click', function(e) {
+            e.preventDefault();
+            this.classList.add('hidden');
+            kontakLinksContainer.classList.add('visible');
+        });
+    }
+
+    /**
+     * ===================================================================
+     * Efek Neon Ripple pada Tombol
+     * ===================================================================
+     */
+    const rippleButtons = document.querySelectorAll('.cta-button:not(#cta-kontak), .lihat-semua, .view-more');
+    if (rippleButtons.length > 0) {
+        const createRipple = function(e) {
+            const btn = e.currentTarget;
+            const circle = document.createElement('span');
+            const diameter = Math.max(btn.clientWidth, btn.clientHeight);
+            const radius = diameter / 2;
+            circle.style.width = circle.style.height = `${diameter}px`;
+            circle.style.left = `${e.clientX - btn.getBoundingClientRect().left - radius}px`;
+            circle.style.top = `${e.clientY - btn.getBoundingClientRect().top - radius}px`;
+            circle.classList.add('neon-ripple');
+            const oldRipple = btn.querySelector('.neon-ripple');
+            if (oldRipple) { oldRipple.remove(); }
+            btn.appendChild(circle);
+        };
+        rippleButtons.forEach(btn => { btn.addEventListener('click', createRipple); });
+    }
+
+    if (!document.getElementById('neon-ripple-style')) {
+        const style = document.createElement('style');
+        style.id = 'neon-ripple-style';
+        style.textContent = `
+            .cta-button, .lihat-semua, .view-more, .kontak-link { position: relative; overflow: hidden; }
+            .neon-ripple { position: absolute; border-radius: 50%; background: radial-gradient(circle, rgba(0, 255, 231, 0.7) 0%, transparent 70%); transform: scale(0); animation: neon-ripple-anim 0.6s linear; pointer-events: none; }
+            @keyframes neon-ripple-anim { to { transform: scale(4); opacity: 0; } }
+        `;
+        document.head.appendChild(style);
+    }
 });

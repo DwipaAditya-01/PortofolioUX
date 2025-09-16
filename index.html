@@ -4,174 +4,255 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MY UI/UX DESIGN</title>
+    
+    <title>Dwipa Aditya | Portofolio Desain UI/UX</title>
+
     <link rel="icon" href="image/logo.png" type="image/png">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&display=swap"
-        rel="stylesheet">
-    <link rel="stylesheet" href="css/porto.css">
+    
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/porto.css">
 </head>
 
 <body>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        AOS.init();
-    </script>
 
     <header>
         <nav>
             <div class="logo">
-                <img src="image/logo.png" alt="logo porto">MY UI/UX DESIGN
+                <img src="image/logo.png" alt="Logo Portofolio Dwipa Aditya">
+                <span class="logo-text-gradient">MY UI/UX DESIGN</span>
             </div>
-            <div class="menu-toggle">
+
+            <button class="menu-toggle" aria-label="Toggle navigation">
                 <div class="bar"></div>
                 <div class="bar"></div>
                 <div class="bar"></div>
-            </div>
+            </button>
+
             <ul id="nav-links">
                 <li><a href="#beranda">Home</a></li>
                 <li><a href="#proyek">Projects</a></li>
-                <li><a href="#tentang">About me</a></li>
+                <li><a href="#tentang">About Me</a></li>
                 <li><a href="#kontak">Contact</a></li>
             </ul>
         </nav>
     </header>
 
     <main>
+
         <section id="beranda" class="hero">
             <div class="hero-content">
-                <h1>Transforming Ideas into Intuitive Digital Experiences.</h1>
-                <p>From wireframes to high-fidelity prototypes, I focus on creating user interfaces that are not only
-                    visually appealing but also highly usable.</p>
-                <a href="#proyek" class="cta-button">See My Projects</a>
+                <h1 data-aos="fade-down" data-aos-duration="1200">
+                    Design for the Next Generation
+                </h1>
+                <p data-aos="fade-up" data-aos-duration="1600">
+                    From <span class="highlight">wireframes</span> to <span class="highlight">high-fidelity prototypes</span>, I create digital experiences that are visually bold, intuitive, and ready for Gen Z.<br>
+                    <span class="hero-slogan">Let's make something <span class="neon">iconic</span>!</span>
+                </p>
+                <a href="#proyek" class="cta-button" data-aos="zoom-in" data-aos-duration="1200">
+                    See My Projects
+                </a>
+            </div>
+            
+            <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="Logo Figma mengambang" class="floating-figma-logo">
+        </section>
+        
+        <section id="fokus">
+            <h2 data-aos="fade-down">My Core Focus</h2>
+            <div class="fokus-container">
+
+                <div class="skill-card" data-aos="fade-right" data-aos-duration="1200">
+                    <div class="skill-icon">
+                        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" alt="Figma Icon" />
+                    </div>
+                    <h3>UI/UX Design</h3>
+                    <p>Saya merancang pengalaman digital yang intuitif dan menarik secara visual, dengan fokus pada kebutuhan pengguna.</p>
+                    <ul class="skill-list">
+                        <li>User Interface Design</li>
+                        <li>Prototyping & Wireframing</li>
+                        <li>Design Systems</li>
+                    </ul>
+                </div>
+
+                <div class="skill-card" data-aos="fade-left" data-aos-duration="1200">
+                    <div class="skill-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-code"><polyline points="16 18 22 12 16 6"></polyline><polyline points="8 6 2 12 8 18"></polyline></svg>
+                    </div>
+                    <h3>Frontend Development</h3>
+                    <p>Saya mengubah desain menjadi kode yang fungsional, responsif, dan interaktif di berbagai perangkat.</p>
+                    <ul class="skill-list">
+                        <li>HTML5 & CSS3</li>
+                        <li>JavaScript (ES6+)</li>
+                        <li>Responsive Layouts</li>
+                    </ul>
+                </div>
+
             </div>
         </section>
 
         <section id="proyek">
-            <h2>Featured Projects</h2>
-            <div class="gallery">
-                <!-- Item 1 -->
-                <div class="gallery-item" data-aos="fade-up" data-aos-duration="2000">
-                    <div class="gallery-item-image-container">
-                        <img src="image/ss1.jpg" alt="Thumbnail Aplikasi Kesehatan Anak">
-                        <div class="overlay">
-                            <a href="html/research.html" class="lihat-semua">View Details</a>
-                        </div>
-                    </div>
-                    
-                    <div class="gallery-item-content">
-                        <h3>Health Application Design: Child Growth and Development</h3>
-                        <p>This app is designed to help parents monitor their children's growth and development comprehensively and easily.</p>
-                    </div>
-                </div>
-
-                <!-- Item 2 -->
-                 <div class="gallery-item" data-aos="fade-up" data-aos-duration="2000">
-                    <div class="gallery-item-image-container">
-                        <img src="image/ss2.png" alt="Thumbnail Aplikasi Kesehatan Anak">
-                        <div class="overlay">
-                            <a href="research.html" class="lihat-semua">View Details</a>
-                        </div>
-                    </div>
-                    
-                    <div class="gallery-item-content">
-                        <h3>E-commerce Website Redesign: Ngendah Bike Shop</h3>
-                        <p>User experience for online bicycle stores.</p>
-                    </div>
-                </div>
+            <div class="proyek-header">
+                <h2 data-aos="fade-down" data-aos-duration="1200">Featured Projects</h2>
                 
-                <!-- Item 3 -->
-                <div class="gallery-item" data-aos="fade-up" data-aos-duration="2000">
-                    <div class="gallery-item-image-container">
-                        <img src="image/ss3.png" alt="Thumbnail Aplikasi Kesehatan Anak">
-                        <div class="overlay">
-                            <a href="research.html" class="lihat-semua">View Details</a>
-                        </div>
-                    </div>
-                    
-                    <div class="gallery-item-content">
-                            <h3>Application Design for Cleanliness: Eco Nect</h3>
-                            <p>The UI/UX design of eco nect is used for monitoring cleanliness and has various interesting features that make it easier for users.</p>
-                    </div>
-                </div>
-               <!-- Hidden Item 4 -->
-                <div class="gallery-item" data-aos="fade-up" data-aos-duration="2000">
-                    <div class="gallery-item-image-container">
-                        <img src="image/ss4.png" alt="Thumbnail Aplikasi Kesehatan Anak">
-                        <div class="overlay">
-                            <a href="research.html" class="lihat-semua">View Details</a>
-                        </div>
-                    </div>
-                    
-                    <div class="gallery-item-content">
-                        <h3>Travel/tour service website: Bali Trekking Tour</h3>
-                        <p>Bali Trekking Tour is a website designed for adventurers, nature lovers, and travelers who want to explore the natural and challenging side of Bali Island.</p>
-                    </div>
-                </div>
-                <!-- Hidden Item 5 -->
-                <div class="gallery-item" data-aos="fade-up" data-aos-duration="2000">
-                    <div class="gallery-item-image-container">
-                        <img src="image/soon.png" alt="Thumbnail Aplikasi Kesehatan Anak">
-                        <div class="overlay">
-                            <a href="research.html" class="lihat-semua">View Details</a>
-                        </div>
-                    </div>
-                 
-                    <div class="gallery-item-content">
-                        <h3>E-commerce Website</h3>
-                        <p>User experience for online.</p>
-                    </div>
-                </div>
-             <!-- Hidden Item 6 -->
-                <div class="gallery-item" data-aos="fade-up" data-aos-duration="2000">
-                    <div class="gallery-item-image-container">
-                        <img src="image/soon.png" alt="Thumbnail Aplikasi Kesehatan Anak">
-                        <div class="overlay">
-                            <a href="research.html" class="lihat-semua">View Details</a>
-                        </div>
-                    </div>
-                    
-                    <div class="gallery-item-content">
-                        <h3>Mobile Application Design for Business</h3>
-                        <p>UI/UX design for a tour guide mount batur.</p>
+                <div class="project-filter-dropdown" data-aos="fade-down" data-aos-duration="1200">
+                    <button class="main-filter-btn" id="main-filter-btn">
+                        <span id="filter-btn-text">All</span> ▼
+                    </button>
+                    <div class="filter-menu" id="filter-menu">
+                        <ul>
+                            <li><a href="#" data-filter="all">All</a></li>
+                            <li class="has-submenu">
+                                <a href="#">Figma </a>
+                                <ul class="submenu">
+                                    <li><a href="#" data-filter="mobile">Mobile App</a></li>
+                                    <li><a href="#" data-filter="website">Website</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#" data-filter="frontend">Front End Web</a></li>
+                        </ul>
                     </div>
                 </div>
             </div>
-            <!-- View More Button -->
+
+            <div class="gallery">
+
+                <article class="gallery-item" data-filter="mobile" data-aos="fade-up">
+                    <figure class="gallery-item-image-container">
+                        <img src="image/ss1.jpg" alt="Tampilan aplikasi Health App Child Growth">
+                        <div class="overlay">
+                            <a href="html/research.html" class="lihat-semua">View Details</a>
+                        </div>
+                    </figure>
+                    <div class="gallery-item-content">
+                        <h3>Health App: Child Growth</h3>
+                        <p>Monitor your child's growth with a modern, easy-to-use interface.</p>
+                    </div>
+                </article>
+
+                <article class="gallery-item" data-filter="website" data-aos="fade-up">
+                    <figure class="gallery-item-image-container">
+                        <img src="image/ss2.png" alt="Tampilan redesign website Ngendah Bike Shop">
+                        <div class="overlay">
+                            <a href="research.html" class="lihat-semua">View Details</a>
+                        </div>
+                    </figure>
+                    <div class="gallery-item-content">
+                        <h3>Ngendah Bike Shop Redesign</h3>
+                        <p>Fresh, bold, and mobile-first e-commerce for the next generation of bikers.</p>
+                    </div>
+                </article>
+
+                <article class="gallery-item" data-filter="mobile" data-aos="fade-up">
+                             <figure class="gallery-item-image-container">
+                                <img src="image/ss3.png" alt="Tampilan aplikasi kebersihan Eco Nect">
+                                <div class="overlay">
+                                    <a href="research.html" class="lihat-semua">View Details</a>
+                                </div>
+                            </figure>
+                            <div class="gallery-item-content">
+                                <h3>Eco Nect: Cleanliness App</h3>
+                                <p>Monitor and gamify cleanliness with a vibrant, Gen Z-friendly UI/UX.</p>
+                            </div>
+                        </article>
+                        
+                <article class="gallery-item" data-filter="frontend" data-aos="fade-up">
+                           <figure class="gallery-item-image-container">
+                                <img src="image/ss4.png" alt="Tampilan website Bali Trekking Tour">
+                                <div class="overlay">
+                                    <a href="research.html" class="lihat-semua">View Details</a>
+                                </div>
+                            </figure>
+                            <div class="gallery-item-content">
+                                <h3>Bali Trekking Tour</h3>
+                                <p>Adventure and travel website for explorers. Modern, bold, and immersive.</p>
+                            </div>
+                        </article>
+                        
+                <article class="gallery-item" data-filter="mobile" data-aos="fade-up">
+                            <figure class="gallery-item-image-container">
+                                <img src="image/ss5.png" alt="Tampilan aplikasi kebersihan Eco Drop">
+                                <div class="overlay">
+                                    <a href="research.html" class="lihat-semua">View Details</a>
+                                </div>
+                            </figure>
+                            <div class="gallery-item-content">
+                                <h3>Eco Drop: Cleanliness App</h3>
+                                <p>Drop your waste, earn rewards. UI/UX for a cleaner future.</p>
+                            </div>
+                        </article>
+                        
+                <article class="gallery-item" data-filter="mobile" data-aos="fade-up">
+                           <figure class="gallery-item-image-container">
+                                <img src="image/soon.png" alt="Tampilan aplikasi bisnis Tour Guide">
+                                <div class="overlay">
+                                    <a href="research.html" class="lihat-semua">View Details</a>
+                                </div>
+                            </figure>
+                            <div class="gallery-item-content">
+                                <h3>Business App: Tour Guide</h3>
+                                <p>UI/UX for a modern tour guide app. Sleek, social, and ready for Gen Z travelers.</p>
+                            </div>
+                        </article>
+            </div>
             <div class="view-more-container">
                 <a href="#" id="view-more" class="view-more" data-expanded="false">View More</a>
             </div>
         </section>
 
         <section id="tentang">
-            <h2>About me</h2>
+            <h2 data-aos="fade-down" data-aos-duration="1200">About Me</h2>
             <div class="about-content">
-                <img src="image/user3.png" alt="Foto Profil Aditya Putra" class="profile-pic" data-aos="zoom-out-right"  data-aos-duration="1000">
-                <p data-aos="zoom-out-left" data-aos-duration="2000">Hello! I am Dwipa Aditya, a UI/UX designer who is passionate about creating user-centered design
-                    solutions.
-                    I have experience conducting research with professors and have participated in a national
-                    competition.
-                    I believe that good design is a combination of
-                    attractive aesthetics and
-                    high functionality.</p>
+                <div class="about-img-wrapper">
+                    <img src="image/user3.png" alt="Foto profil Dwipa Aditya" class="profile-pic">
+                    <span class="about-img-glow"></span>
+                </div>
+                <p data-aos="zoom-out-left" data-aos-duration="2000">
+                    Hi! I'm <span class="about-highlight">Dwipa Aditya</span>, a passionate UI/UX designer who loves to create digital products that are not just beautiful, but also meaningful and fun.<br><br>
+                    Experienced in research, competitions, and collaborating with creative minds. I believe design should be <span class="about-highlight">bold, functional, and always evolving</span>.<br><br>
+                    <span class="about-cta">Let's connect and build something awesome together!</span>
+                </p>
             </div>
         </section>
 
         <section id="kontak">
-            <h2>Contact me</h2>
-            <p>Interested in collaborating or want to know more? Don't hesitate to contact me.</p>
-            <a href="unknoown.312@gmail.com" class="cta-button">Send Email</a>
+            <div class="kontak-wrapper">
+                <h2 data-aos="fade-down">Get In Touch</h2>
+                <p data-aos="fade-up" data-aos-duration="1400">Punya ide keren atau tertarik untuk berkolaborasi? <br>Saya siap mendengarkan.</p>
+                <div class="kontak-interactive-container">
+                    <a href="#" id="cta-kontak" class="cta-button" data-aos="zoom-in" data-aos-duration="1200">Let's Connect</a>
+                    <div id="kontak-links-container">
+                        <a href="https://www.instagram.com/dwipa_aditya/" target="_blank" rel="noopener noreferrer" class="kontak-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line></svg>
+                            <span>Instagram</span>
+                        </a>
+                        <a href="mailto:unknoown.312@gmail.com" class="kontak-link">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
+                            <span>Email</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
         </section>
+
     </main>
 
     <footer>
-        <p>&copy; 2025 MY UI/UX DESIGN. Hak Cipta Dilindungi.</p>
+        <div class="footer-glow"></div>
+        <p>&copy; 2025 <span class="footer-brand">MY UI/UX DESIGN</span>. All Rights Reserved.</p>
     </footer>
 
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({
+            once: true,
+            duration: 1000,
+        });
+    </script>
+    <script type="text/javascript" src="https://unpkg.com/vanilla-tilt@1.7.2/dist/vanilla-tilt.min.js"></script>
     <script src="js/script.js"></script>
-</body>
 
+</body>
 </html>
